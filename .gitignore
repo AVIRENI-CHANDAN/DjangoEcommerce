@@ -1,0 +1,11 @@
+# Files
+db.sqlite3
+# .gitignore
+# The gitignore file is added to project so as to have record of the files that are ignored.
+*.py[cod]
+*$py.class
+# Folder
+assets/
+**/__pycache__/
+**/migrations/0**.py
+dist/
