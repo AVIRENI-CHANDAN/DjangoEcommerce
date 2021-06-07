@@ -20,7 +20,7 @@ class CustomUser(AbstractUser):
 
 class AdminUser(models.Model):
     auth_user_id = models.OneToOneField(CustomUser,on_delete=models.CASCADE)
-    profile_pic = models.ImageField(default="",upload_to="assets/AdminUser")
+    profile_pic = models.ImageField(default="")
     created_at = models.DateTimeField(auto_now_add=True)
     is_active = models.IntegerField(default=1)
     class Meta:
@@ -37,7 +37,7 @@ class StaffUser(models.Model):
         verbose_name_plural = 'Recruits'
 
 class MerchantUser(models.Model):
-    profile_pic = models.FileField(default="",upload_to="assets")
+    profile_pic = models.FileField(default="")
     auth_user_id = models.OneToOneField(CustomUser,on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     company_name = models.CharField(max_length=255)

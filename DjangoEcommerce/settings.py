@@ -126,4 +126,7 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # User Added lines of code
+STATIC_ROOT = f"{BASE_DIR}/static"
 AUTH_USER_MODEL = 'DjangoEcommerceApp.Customuser'
+MEDIA_URL = "/media/"
+MEDIA_ROOT = f"{BASE_DIR}/media"
