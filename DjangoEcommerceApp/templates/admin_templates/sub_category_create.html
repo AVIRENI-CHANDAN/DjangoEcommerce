@@ -1,0 +1,69 @@
+{% extends 'admin_templates/base_template.html' %}
+
+{% block title %}
+Sub Category Create
+{% endblock title %}
+
+{% block custom_css %}
+<style>
+    .submit-btn{
+        cursor: pointer;
+        box-shadow: 0 0 2px black;
+        width: 80%;
+        margin-left: 10%;
+    }
+    .submit-btn:hover{
+        box-shadow: 0 0 5px black, 0 0 8px gray,0 0 10px gray;
+        font-weight: bold;
+    }
+</style>
+{% endblock custom_css %}
+
+{% block page_title %}
+Sub Category Create
+{% endblock page_title %}
+
+{% block page_content %}
+<form method="post" enctype="multipart/form-data" class="col-12 col-md-6 col-lg-6">
+    {% csrf_token %}
+    <!-- {{form.as_p}} -->
+    {% for i in form %}
+    <p>
+        <div class="form-group">
+            <label>{{i.label}}</label>
+            {% if i.field.widget.input_type != "select" %}
+            <input type="{{ i.field.widget.input_type }}" class="form-control" name="{{ i.name }}"
+            {% if i.field.widget.input_type == "text" %} max_length="255" {% endif %}
+            required id="{{ i.auto_id }}" {% if i.name == "is_active" %} value=1 {% endif %}>
+            {% endif %}
+            {% if i.field.widget.input_type == "select" %}
+            <select class="form-control" name="{{ i.name }}" required id="{{ i.auto_id }}">
+                {% for id,value in i.field.choices %}
+                <option value="{{id}}">{{value}}</option>
+                {% endfor %}
+            </select>
+            {% endif %}
+        </div>
+    </p>
+    {% endfor %}
+
+    <button type="submit" class="btn btn-primary submit-btn">Save Sub Category</button>
+</form>
+{% endblock page_content %} 
+
+{% block custom_js %}
+<script>
+    document.getElementById('id_title').onkeyup = ()=>{
+        document.getElementById('id_url_slug').value = document.getElementById('id_title').value.toLowerCase().replaceAll(" ","-");
+    }
+    document.getElementById('id_is_active').onkeyup = ()=>{
+        if(document.getElementById('id_is_active').value > 0){
+            document.getElementById('id_is_active').value = 1;
+        }
+        else{
+            document.getElementById('id_is_active').value = 0;
+        }
+    }
+    
+</script>
+{% endblock custom_js %}

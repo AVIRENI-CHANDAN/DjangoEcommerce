@@ -22,6 +22,7 @@
   <!-- Template CSS -->
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
   <link rel="stylesheet" href="{% static 'css/components.css' %}">
+  <link rel="shortcut icon" href="{% static 'img/logo50x50.png' %}" type="image/x-icon">
   {% block custom_css %}
   {% endblock custom_css %}
 </head>
@@ -33,7 +34,7 @@
       <!-- Nav bar -->
       {% include 'admin_templates/navbar.html' %}
       <!-- Side bar -->
-      {% include 'admin_templates/sidebar.html' %}
+      {% include 'admin_templates/sidebar.html' with id=form.instance.id %}
 
       <!-- Main Content -->
       <div class="main-content">
@@ -41,6 +42,19 @@
           <div class="section-header">
             <h1>{% block page_title %}{% endblock page_title %}</h1>
           </div>
+          {% if messages %}
+          {% for i in messages %}
+          {% if i.tags == "success" %}
+          <div class="alert alert-success">
+            {{i}}
+          </div>
+          {% elif i.tags == "error" %}
+          <div class="alert alert-danger">
+            {{i}}
+          </div>
+          {% endif %}
+          {% endfor %}
+          {% endif %}
           {% block page_content %}
           {% endblock page_content %}
         </section>
@@ -79,5 +93,7 @@
   <!-- Template JS File -->
   <script src="{% static 'js/scripts.js' %}"></script>
   <script src="{% static 'js/custom.js' %}"></script>
+  {% block custom_js %}
+  {% endblock custom_js %}
 </body>
 </html>

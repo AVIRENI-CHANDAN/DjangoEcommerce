@@ -1,0 +1,46 @@
+{% extends 'admin_templates/base_template.html' %}
+{% load static %}
+<!-- Title Block -->
+{% block title %}
+Dash board
+{% endblock title %}
+<!-- CSS block -->
+{% block custom_css %}
+
+{% endblock custom_css %}
+<!-- Page title block. This is visible on the page -->
+{% block page_title %}
+Dashboard
+{% endblock page_title %}
+<!-- Page content -->
+{% block page_content %}
+<div class="card card-primary col-12 col-md-6 col-lg-6">
+    <div class="card-header">
+        <h2>Profile</h2>
+    </div>
+    <div class="card-body">
+        <p>Full name: {{request.user.first_name}} {{request.user.last_name}}</p>
+        <p>Username: {{request.user.username}}</p>
+        <p>Status: {% if request.user.is_active %}Active{% else %}InActive{% endif %}</p>
+        <p>Email: {{request.user.email}}</p>
+        <p>User Type: {% if request.user.user_type == 1 %}Admin{% elif request.user.user_type == 2 %}Staff{% elif request.user.user_type == 3 %}Merchant{% else %}Customers{% endif %}</p>
+        <p>Date joined: {{request.user.date_joined}}</p>
+    </div>
+    <div class="card-footer">
+        Django Ecommerce
+    </div>
+</div>
+<div class="col-12 mb-4">
+    <div class="hero text-white hero-bg-image hero-bg-parallax" style="background-image: url('https://i.pinimg.com/originals/06/18/25/061825793972742302cfd9294f4e53aa.jpg');">
+        <div class="hero-inner">
+            <h2>Welcome, {{request.user.username}}!</h2>
+            <p class="lead">This page is a place to manage posts, categories and more.</p>
+        </div>
+    </div>
+</div>
+
+{% endblock page_content %}
+<!-- Custome JavaScript block -->
+{% block custom_js %}
+
+{% endblock custom_js %}

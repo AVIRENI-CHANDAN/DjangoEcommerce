@@ -1,0 +1,78 @@
+{% extends 'admin_templates/base_template.html' %}
+
+{% block title %}
+Category Update
+{% endblock title %}
+
+{% block custom_css %}
+<style>
+    .submit-btn{
+        cursor: pointer;
+        box-shadow: 0 0 2px black;
+        width: 80%;
+        margin-left: 10%;
+    }
+    .submit-btn:hover{
+        box-shadow: 0 0 5px black, 0 0 8px gray,0 0 10px gray;
+        font-weight: bold;
+    }
+</style>
+{% endblock custom_css %}
+
+{% block page_title %}
+Category Update
+{% endblock page_title %}
+
+{% block page_content %}
+<form method="post" enctype="multipart/form-data" class="col-12 col-md-6 col-lg-6">
+    {% csrf_token %}
+    {% for i in form %}
+    <p>
+        <div class="form-group">
+            {{i.label}}
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        <i class="fas fa-{% cycle 'heading' 'link' 'image' 'edit' 'caret-up' %}"></i>
+                    </div>
+                </div>
+                
+                <input type="{{ i.field.widget.input_type }}" class="form-control" name="{{ i.name }}" id="{{ i.auto_id }}" value="{{ i.value }}">
+                {% if field.errors %}
+                <div class="alert alert-danger">
+                    {{field.errors}}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        {% if i.field.widget.input_type == "file" %}
+        <div class="form-group">
+            <label>
+                Current {{ i.label }}
+            </label><br>
+            <img src="/media/{{i.value}}" alt="FetchError" style="height:150px;">
+        </div>
+        {% endif %}
+    </p>
+    {% endfor %}
+
+    <button type="submit" class="btn btn-primary submit-btn">Update Category</button>
+</form>
+{% endblock page_content %} 
+
+{% block custom_js %}
+<script>
+    document.getElementById('id_title').onkeyup = ()=>{
+        document.getElementById('id_url_slug').value = document.getElementById('id_title').value.toLowerCase().replaceAll(" ","-");
+    }
+    document.getElementById('id_is_active').onkeyup = ()=>{
+        if(document.getElementById('id_is_active').value > 0){
+            document.getElementById('id_is_active').value = 1;
+        }
+        else{
+            document.getElementById('id_is_active').value = 0;
+        }
+    }
+    
+</script>
+{% endblock custom_js %}

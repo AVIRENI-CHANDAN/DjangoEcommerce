@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.dispatch import receiver
 from django.db.models.signals import post_save
+from django.urls import reverse
 import datetime
 
 # Create your models here.
@@ -12,7 +13,7 @@ class CustomUser(AbstractUser):
         (3,"Merchant"),
         (4,"Customers")
     )
-    user_type = models.CharField(max_length=255,choices=user_type_choices,default=1)
+    user_type = models.IntegerField(choices=user_type_choices,default=1)
     is_active = models.IntegerField(default=1)
     class Meta:
         verbose_name = 'App Staff'
@@ -39,10 +40,11 @@ class StaffUser(models.Model):
 class MerchantUser(models.Model):
     profile_pic = models.FileField(default="")
     auth_user_id = models.OneToOneField(CustomUser,on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now_add=True)
     company_name = models.CharField(max_length=255)
     gst_details = models.CharField(max_length=255)
     address = models.TextField()
+    is_added_by_admin = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
     is_active = models.IntegerField(default=1)
     class Meta:
         verbose_name = 'Merchant'
@@ -59,12 +61,21 @@ class CustomerUser(models.Model):
 
 class Categories(models.Model):
     id = models.AutoField(primary_key=True)
+    thumbnail = models.FileField()
     title = models.CharField(max_length=255)
     url_slug = models.CharField(max_length=255)
-    thumbnail = models.FileField()
     description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     is_active = models.IntegerField(default=1)
+    def get_absolute_url(self):
+        """
+        This is to redirect the template to specified url name
+        on submitting the form.
+        """
+        return reverse("category_list_view")
+    
+    def __str__(self):
+        return self.title
 
 class SubCategories(models.Model):
     id = models.AutoField(primary_key=True)
@@ -75,6 +86,12 @@ class SubCategories(models.Model):
     description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     is_active = models.IntegerField(default=1)
+    def get_absolute_url(self):
+        """
+        This is to redirect the template to specified url name
+        on submitting the form.
+        """
+        return reverse("sub_category_list_view")
 
 class Products(models.Model):
     id = models.AutoField(primary_key = True)

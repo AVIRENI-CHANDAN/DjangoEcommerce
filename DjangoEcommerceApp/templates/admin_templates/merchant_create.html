@@ -1,0 +1,68 @@
+{% extends 'admin_templates/base_template.html' %}
+
+{% block title %}
+Merchant Create
+{% endblock title %}
+
+{% block custom_css %}
+<style>
+    .submit-btn{
+        cursor: pointer;
+        box-shadow: 0 0 2px black;
+        width: 80%;
+        margin-left: 10%;
+    }
+    .submit-btn:hover{
+        box-shadow: 0 0 5px black, 0 0 8px gray,0 0 10px gray;
+        font-weight: bold;
+    }
+</style>
+{% endblock custom_css %}
+
+{% block page_title %}
+Merchant Create
+{% endblock page_title %}
+
+{% block page_content %}
+<form method="post" enctype="multipart/form-data" class="col-12 col-md-6 col-lg-6">
+    {% csrf_token %}
+    {% for i in form %}
+    <div class="form-group">
+        <label>{{i.label}}</label>
+        <input type="{{ i.field.widget.input_type }}" class="form-control" name="{{ i.name }}" {% if i.field.widget.input_type == "text" %} max_length="255" {% endif %} required id="{{ i.auto_id }}">
+        {% if i.errors %}
+        <div class="alert alert-danger">{{i.errors}}</div>
+        {% endif %}
+    </div>
+    {% endfor %}
+    <div class="form-group">
+        <label>Profile Image</label>
+        <input type="file" name="profile_pic" id="id_profile_pic" class="form-control">
+    </div>
+    <div class="form-group">
+        <label>Company name</label>
+        <input type="text" name="company_name" id="id_company_name" class="form-control">
+    </div>
+    <div class="form-group">
+        <label>GST</label>
+        <input type="text" name="gst_details" id="id_gst_details" class="form-control">
+    </div>
+    <div class="form-group">
+        <label>Address</label>
+        <input type="text" name="address" id="id_address" class="form-control">
+    </div>
+    <div class="form-group">
+        <label class="custom-switch mt-2">
+            <input type="checkbox" name="is_added_by_admin" id="id_is_added_by_admin" class="custom-switch-input">
+            <span class="custom-switch-indicator"></span>
+            <span class="custom-switch-description">Is Added By Admin?</span>
+        </label>
+    </div>
+
+    <button type="submit" class="btn btn-primary submit-btn">Save Merchant User</button>
+</form>
+{% endblock page_content %} 
+
+{% block custom_js %}
+
+{% endblock custom_js %}

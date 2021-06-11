@@ -1,0 +1,43 @@
+{% extends 'admin_templates/base_template.html' %}
+{% block title %}
+Sub Category List
+{% endblock title %}
+{% block custom_css %}
+
+{% endblock custom_css %}
+{% block page_title %}
+Sub Category List
+{% endblock page_title %}
+{% block page_content %}
+<div class="row">
+    {% for i in subcategories_list %}
+    <div class="col-12 col-sm-6 col-md-6 col-lg-3">
+        <article class="article article-style-b">
+          <div class="article-header">
+            <div class="article-image" data-background="/media/{{ i.thumbnail }}">
+            </div>
+            <div class="article-badge">
+                <div class="article-badge-item bg-primary">{{i.title}}</div>
+            </div>
+          </div>
+          <div class="article-details">
+              <p class="badge badge-primary">{{ i.category_id.title }}</p>
+              <h4>{{ i.title }}</h4>
+            <p>{{ i.description }}</p>
+            <p>URL Slug: {{ i.url_slug }}</p>
+            <div class="article-cta">
+                <label class="custom-switch mt-2" style="float:left;">
+                    <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input" {% if i.is_active %} checked {% endif %} disabled>
+                    <span class="custom-switch-indicator"></span>
+                    <span class="custom-switch-description">ACTIVE</span>
+                  </label>
+              <a href="{% url 'sub_category_update_view' i.id %}" class="btn btn-primary">EDIT <i class="fas fa-chevron-right"></i></a>
+            </div>
+          </div>
+        </article>
+      </div>
+    {% endfor %}
+</div>
+{% endblock page_content %}
+{% block custom_js %}
+{% endblock custom_js %}
