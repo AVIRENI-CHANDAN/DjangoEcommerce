@@ -35,7 +35,6 @@ function showSlides(n) {
   dots[slideIndex-1].className += " active";
 }
 </script>
-
 ```
 
 <div class="slideshow-container">
