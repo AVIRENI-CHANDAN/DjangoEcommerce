@@ -1,5 +1,5 @@
 # Files
-# db.sqlite3
+db.sqlite3
 # .gitignore
 # The gitignore file is added to project so as to have record of the files that are ignored.
 *.py[cod]
