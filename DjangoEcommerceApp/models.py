@@ -86,6 +86,7 @@ class SubCategories(models.Model):
     description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     is_active = models.IntegerField(default=1)
+    
     def get_absolute_url(self):
         """
         This is to redirect the template to specified url name
@@ -132,7 +133,7 @@ class ProductTransaction(models.Model):
     transaction_description = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
 
-class ProductDetails(models.CharField):
+class ProductDetails(models.Model):
     id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=255)
     product_id = models.ForeignKey(Products,on_delete=models.CASCADE)
@@ -140,7 +141,7 @@ class ProductDetails(models.CharField):
     created_at = models.DateTimeField(auto_now_add=True)
     is_active = models.IntegerField(default=1)
 
-class ProductAbout(models.CharField):
+class ProductAbout(models.Model):
     id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=255)
     product_id = models.ForeignKey(Products,on_delete=models.CASCADE)
