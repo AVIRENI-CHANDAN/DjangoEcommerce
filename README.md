@@ -7,7 +7,7 @@ This is a Ecommerce web application made with Django framework. It provide editi
 
 <div class="imagesSet1">
 
-<img src="https://user-images.githubusercontent.com/58340159/122059709-8d447200-ce0a-11eb-8190-9190bb6a5b89.png" width="48%">  <img src="https://user-images.githubusercontent.com/58340159/122059714-8ddd0880-ce0a-11eb-8920-570513400d28.png" width="48%">
+<img src="https://user-images.githubusercontent.com/58340159/122059709-8d447200-ce0a-11eb-8190-9190bb6a5b89.png" width="49%">  <img src="https://user-images.githubusercontent.com/58340159/122059714-8ddd0880-ce0a-11eb-8920-570513400d28.png" width="49%">
   <img src="https://user-images.githubusercontent.com/58340159/122059721-8fa6cc00-ce0a-11eb-9bda-aa67b122d02b.png" width="450px">
   <img src="https://user-images.githubusercontent.com/58340159/122059727-91708f80-ce0a-11eb-9d4e-ba0e853547f0.png" width="450px">  
   <img src="https://user-images.githubusercontent.com/58340159/122059730-92092600-ce0a-11eb-9860-15a79e46d213.png" width="450px">
