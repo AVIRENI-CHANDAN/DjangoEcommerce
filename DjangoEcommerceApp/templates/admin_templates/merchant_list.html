@@ -9,6 +9,52 @@ Merchant User List
 Merchant User List
 {% endblock page_title %}
 {% block page_content %}
+
+<form method="GET" class="form-inline mr-auto">
+  <div class=" col-12">
+    <div class="form-group" style="float: right;">
+      <label class="form-label">Sort by</label>
+      <div class="selectgroup w-100">
+        <label class="selectgroup-item">
+          <a href="{% url 'merchant_list_view' %}" style="text-decoration:none;">
+            <input type="radio" name="value" value="50" class="selectgroup-input" {% if orderby == "" %}checked{% endif %}>
+            <span class="selectgroup-button hover-shadow-5px">None</span>
+          </a>
+        </label>
+        <label class="selectgroup-item">
+          <a href="{% url 'merchant_list_view' %}?filter={{ filter }}&orderby=id" style="text-decoration:none;">
+            <input type="radio" name="value" value="50" class="selectgroup-input" {% if orderby == "id" %}checked{% endif %}>
+            <span class="selectgroup-button hover-shadow-5px">ID</span>
+          </a>
+        </label>
+        <label class="selectgroup-item">
+          <a href="{% url 'merchant_list_view' %}?filter={{ filter }}&orderby=company_name" style="text-decoration:none;">
+            <input type="radio" name="value" value="100" class="selectgroup-input" {% if orderby == "company_name" %}checked{% endif %}>
+            <span class="selectgroup-button hover-shadow-5px">Company Name</span>
+          </a>
+        </label>
+        <label class="selectgroup-item">
+          <a href="{% url 'merchant_list_view' %}?filter={{ filter }}&orderby=gst_details" style="text-decoration:none;">
+            <input type="radio" name="value" value="150" class="selectgroup-input" {% if orderby == "gst_details" %}checked{% endif %}>
+            <span class="selectgroup-button hover-shadow-5px">GST Details</span>
+          </a>
+        </label>
+        <label class="selectgroup-item">
+          <a href="{% url 'merchant_list_view' %}?filter={{ filter }}&orderby=created_at" style="text-decoration:none;">
+            <input type="radio" name="value" value="150" class="selectgroup-input" {% if orderby == "created_at" %}checked{% endif %}>
+            <span class="selectgroup-button hover-shadow-5px">Created At</span>
+          </a>
+        </label>
+      </div>
+    </div>
+    <div class="search-element">
+      <input class="form-control" type="search" placeholder="Search" aria-label="Search" data-width="250" style="width: 250px;" name="filter" value="{{filter}}">
+      <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>      
+    </div>
+  </div>
+</form>
+<br>
+
 <div class="row">
     {% for i in merchantuser_list %}
     <div class="col-12 col-sm-6 col-md-6 col-lg-3">
@@ -40,6 +86,26 @@ Merchant User List
       </div>
     {% endfor %}
 </div>
+
+<div class="col-12">
+  <ul class="pagination">
+    <li class="page-item {% if not page_obj.has_previous %}disabled{% endif %}">
+      <a class="page-link" href="{% if page_obj.has_previous %}{% url 'sub_category_list_view' %}?filter={{ filter }}&orderby={{ orderby }}&page={{ page_obj.previous_page_number }}{% endif %}" tabindex="-1">Previous</a>
+    </li>
+    <!-- <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item active">
+      <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li> -->
+    {% for i in paginator.page_range %}
+    <li class="page-item {% if page_obj.number == i %}active{% endif %}"><a href="{% url 'sub_category_list_view' %}?filter={{ filter }}&orderby={{ orderby }}&page={{ i }}" class="page-link">{{ i }}</a></li>
+    {% endfor %}
+    <li class="page-item {% if not page_obj.has_next %}disabled{% endif %}">
+      <a class="page-link" href="{% if page_obj.has_next %}{% url 'sub_category_list_view' %}?filter={{ filter }}&orderby={{ orderby }}&page={{ page_obj.next_page_number }}{% endif %}" tabindex="-1">Next</a>
+    </li>
+  </ul>
+</div>
+
 {% endblock page_content %}
 {% block custom_js %}
 {% endblock custom_js %}

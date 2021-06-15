@@ -25,6 +25,33 @@
   <link rel="shortcut icon" href="{% static 'img/logo50x50.png' %}" type="image/x-icon">
   {% block custom_css %}
   {% endblock custom_css %}
+  <style>
+    .description-6em{
+    height: 12em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+  }
+  .description-6em:hover{
+    height: 12em;
+    overflow-y: scroll;
+    text-overflow: initial;
+    -webkit-line-clamp: initial;
+    -webkit-box-orient: initial;
+  }
+  .description-6em::-webkit-scrollbar-thumb {
+    background: #6777ef; 
+    border-radius: 5px;
+  }
+  .description-6em::-webkit-scrollbar-track {
+    border-radius: 5px;
+  }
+  .description-6em::-webkit-scrollbar {
+    width: 5px;
+  }
+  </style>
 </head>
 
 <body>

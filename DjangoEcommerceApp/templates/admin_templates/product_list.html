@@ -1,12 +1,38 @@
 {% extends 'admin_templates/base_template.html' %}
 {% block title %}
-Sub Category List
+Product List List
 {% endblock title %}
 {% block custom_css %}
-
+<style>
+  .product-description{
+    height: 4em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+  }
+  .product-description:hover{
+    height: 12em;
+    overflow-y: scroll;
+    text-overflow: initial;
+    -webkit-line-clamp: initial;
+    -webkit-box-orient: initial;
+  }
+  .product-description::-webkit-scrollbar-thumb {
+    background: #6777ef; 
+    border-radius: 5px;
+  }
+  .product-description::-webkit-scrollbar-track {
+    border-radius: 5px;
+  }
+  .product-description::-webkit-scrollbar {
+    width: 5px;
+  }
+</style>
 {% endblock custom_css %}
 {% block page_title %}
-Sub Category List
+Product List List
 {% endblock page_title %}
 {% block page_content %}
 <form method="GET" class="form-inline mr-auto">
@@ -15,14 +41,14 @@ Sub Category List
       <label class="form-label">Sort by</label>
       <div class="selectgroup w-100">
         <label class="selectgroup-item">
-          <a href="{% url 'sub_category_list_view' %}" style="text-decoration:none;">
+          <a href="{% url 'product_list_view' %}" style="text-decoration:none;">
             <input type="radio" name="value" value="50" class="selectgroup-input" {% if orderby == "" %}checked{% endif %}>
             <span class="selectgroup-button hover-shadow-5px">None</span>
           </a>
         </label>
         {% for i in sorting_fields %}
         <label class="selectgroup-item">
-          <a href="{% url 'sub_category_list_view' %}?filter={{ filter }}&orderby={{ i }}" style="text-decoration:none;">
+          <a href="{% url 'product_list_view' %}?filter={{ filter }}&orderby={{ i }}" style="text-decoration:none;">
             <input type="radio" name="value" value="150" class="selectgroup-input"  {% if orderby == i %}checked{% endif %}>
             <span class="selectgroup-button hover-shadow-5px">{{i.capitalize}}</span>
           </a>
@@ -39,28 +65,34 @@ Sub Category List
 <br>
 
 <div class="row">
-    {% for i in subcategories_list %}
+    {% comment %} {% for i in products_list %} {% endcomment %}
+    {% for i in object_list %}
     <div class="col-12 col-sm-6 col-md-6 col-lg-3">
         <article class="article article-style-b">
           <div class="article-header">
-            <div class="article-image" data-background="/media/{{ i.thumbnail }}">
+            <div class="article-image" data-background="{{ i.media.media_content }}">
             </div>
             <div class="article-badge">
-                <div class="article-badge-item bg-primary">{{i.title}}</div>
+                <div class="article-badge-item bg-primary">{{i.product.product_name}}</div>
             </div>
           </div>
           <div class="article-details">
-              <p class="badge badge-primary">{{ i.category_id.title }}</p>
+              <p class="badge badge-primary">{{ i.product.subcategories_id.title }}</p>
               <h4>{{ i.title }}</h4>
-            <p class="description-6em">{{ i.description }}</p>
-            <p>URL Slug: {{ i.url_slug }}</p>
+            <p class="product-description">{{ i.product.product_description }}</p>
+            <p>URL Slug: {{ i.product.url_slug }}</p>
+            <p>Product tags:
+            {% for j in i.tags %}
+            <p class="btn btn-primary" style="color:white;">{{j.title}}</p>
+            {% endfor %}
+            </p>
             <div class="article-cta">
                 <label class="custom-switch mt-2" style="float:left;">
-                    <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input" {% if i.is_active %} checked {% endif %} disabled>
+                    <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input" {% if i.product.is_active %} checked {% endif %} disabled>
                     <span class="custom-switch-indicator"></span>
                     <span class="custom-switch-description">ACTIVE</span>
                   </label>
-              <a href="{% url 'sub_category_update_view' i.id %}" class="btn btn-primary">EDIT <i class="fas fa-chevron-right"></i></a>
+                <a href="{% url 'product_update_view' i.product.id %}" class="btn btn-primary">Add content<i class="fas fa-chevron-right"></i></a>
             </div>
           </div>
         </article>
@@ -71,18 +103,14 @@ Sub Category List
 <div class="col-12">
   <ul class="pagination">
     <li class="page-item {% if not page_obj.has_previous %}disabled{% endif %}">
-      <a class="page-link" href="{% if page_obj.has_previous %}{% url 'sub_category_list_view' %}?filter={{ filter }}&orderby={{ orderby }}&page={{ page_obj.previous_page_number }}{% endif %}" tabindex="-1">Previous</a>
+      <a class="page-link" href="{% if page_obj.has_previous %}{% url 'product_list_view' %}?filter={{ filter }}&orderby={{ orderby }}&page={{ page_obj.previous_page_number }}{% endif %}" tabindex="-1">Previous</a>
     </li>
-    <!-- <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item active">
-      <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-    </li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li> -->
+
     {% for i in paginator.page_range %}
-    <li class="page-item {% if page_obj.number == i %}active{% endif %}"><a href="{% url 'sub_category_list_view' %}?filter={{ filter }}&orderby={{ orderby }}&page={{ i }}" class="page-link">{{ i }}</a></li>
+    <li class="page-item {% if page_obj.number == i %}active{% endif %}"><a href="{% url 'product_list_view' %}?filter={{ filter }}&orderby={{ orderby }}&page={{ i }}" class="page-link">{{ i }}</a></li>
     {% endfor %}
     <li class="page-item {% if not page_obj.has_next %}disabled{% endif %}">
-      <a class="page-link" href="{% if page_obj.has_next %}{% url 'sub_category_list_view' %}?filter={{ filter }}&orderby={{ orderby }}&page={{ page_obj.next_page_number }}{% endif %}" tabindex="-1">Next</a>
+      <a class="page-link" href="{% if page_obj.has_next %}{% url 'product_list_view' %}?filter={{ filter }}&orderby={{ orderby }}&page={{ page_obj.next_page_number }}{% endif %}" tabindex="-1">Next</a>
     </li>
   </ul>
 </div>

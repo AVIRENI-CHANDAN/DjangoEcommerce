@@ -3,12 +3,72 @@
 Category List
 {% endblock title %}
 {% block custom_css %}
-
+<style>
+  .hover-shadow-5px:hover{
+    box-shadow: 0 0 5px gray;
+    text-decoration: none;
+  }
+</style>
 {% endblock custom_css %}
 {% block page_title %}
 Category List
 {% endblock page_title %}
 {% block page_content %}
+<form method="GET" class="form-inline">
+  <div class=" col-12">
+    <div class="form-group" style="float: right;">
+      <label class="form-label">Sort by</label>
+      <!-- <div class="selectgroup w-100">
+        <label class="selectgroup-item">
+          <a href="{% url 'category_list_view' %}" style="text-decoration:none;">
+            <input type="radio" name="value" value="50" class="selectgroup-input" checked>
+            <span class="selectgroup-button hover-shadow-5px">None</span>
+          </a>
+        </label>
+        <label class="selectgroup-item">
+          <a href="{% url 'category_list_view' %}?filter={{ filter }}&orderby=id" style="text-decoration:none;">
+            <input type="radio" name="value" value="50" class="selectgroup-input">
+            <span class="selectgroup-button hover-shadow-5px">ID</span>
+          </a>
+        </label>
+        <label class="selectgroup-item">
+          <a href="{% url 'category_list_view' %}?filter={{ filter }}&orderby=title" style="text-decoration:none;">
+            <input type="radio" name="value" value="100" class="selectgroup-input">
+            <span class="selectgroup-button hover-shadow-5px">Title</span>
+          </a>
+        </label>
+        <label class="selectgroup-item">
+          <a href="{% url 'category_list_view' %}?filter={{ filter }}&orderby=description" style="text-decoration:none;">
+            <input type="radio" name="value" value="150" class="selectgroup-input">
+            <span class="selectgroup-button hover-shadow-5px">Description</span>
+          </a>
+        </label>
+      </div> -->
+      <div class="selectgroup">
+        <label class="selectgroup-item">
+          <a href="{% url 'category_list_view' %}" style="text-decoration:none;">
+            <input type="radio" name="value" value="50" class="selectgroup-input" {% if orderby == "" %}checked{% endif %}>
+            <span class="selectgroup-button hover-shadow-5px">None</span>
+          </a>
+        </label>
+        {% for i in sorting_fields %}
+        <label class="selectgroup-item">
+          <a href="{% url 'category_list_view' %}?filter={{ filter }}&orderby={{i}}" style="text-decoration:none;">
+            <input type="radio" name="value" value="150" class="selectgroup-input" {% if orderby == i %}checked{% endif %}>
+            <span class="selectgroup-button hover-shadow-5px">{{i.capitalize}}</span>
+          </a>
+        </label>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="search-element">
+      <input class="form-control" type="search" placeholder="Search" aria-label="Search" data-width="250" style="width: 250px;" name="filter" value="{{filter}}">
+      <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>      
+    </div>
+  </div>
+</form>
+
+<br>
 <div class="row">
     {% for i in categories_list %}
     <div class="col-12 col-sm-6 col-md-6 col-lg-3">
@@ -22,7 +82,7 @@ Category List
           </div>
           <div class="article-details">
               <h4>{{ i.title }}</h4>
-            <p>{{ i.description }}</p>
+            <p class="description-6em">{{ i.description }}</p>
             <p>URL Slug: {{ i.url_slug }}</p>
             <div class="article-cta">
                 <label class="custom-switch mt-2" style="float:left;">
@@ -36,6 +96,19 @@ Category List
         </article>
       </div>
     {% endfor %}
+</div>
+<div class="col-12">
+  <ul class="pagination">
+    <li class="page-item {% if not page_obj.has_previous %}disabled{% endif %}">
+      <a class="page-link" href="{% if page_obj.has_previous %}{% url 'category_list_view' %}?filter={{ filter }}&orderby={{ orderby }}&page={{ page_obj.previous_page_number }}{% endif %}" tabindex="-1">Previous</a>
+    </li>
+    {% for i in paginator.page_range %}
+    <li class="page-item {% if page_obj.number == i %}active{% endif %}"><a href="{% url 'category_list_view' %}?filter={{ filter }}&orderby={{ orderby }}&page={{ i }}" class="page-link">{{ i }}</a></li>
+    {% endfor %}
+    <li class="page-item {% if not page_obj.has_next %}disabled{% endif %}">
+      <a class="page-link" href="{% if page_obj.has_next %}{% url 'category_list_view' %}?filter={{ filter }}&orderby={{ orderby }}&page={{ page_obj.next_page_number }}{% endif %}" tabindex="-1">Next</a>
+    </li>
+  </ul>
 </div>
 {% endblock page_content %}
 {% block custom_js %}

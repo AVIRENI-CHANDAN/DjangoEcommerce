@@ -1,5 +1,5 @@
 {% load static %}
-<div class="main-sidebar sidebar-style-2">
+<div class="main-sidebar sidebar-style-2" style="overflow: hidden; outline: none;">
   <aside id="sidebar-wrapper">
     <div class="sidebar-brand">
       <img src="{% static 'img/logo50x50.png' %}" alt="LogoError">
@@ -17,7 +17,11 @@
       {% url 'adminHome' as category_home %}
       {% url 'category_update_view' id as category_update %}
       <li class="dropdown {% if request.path == category_home %} active {% endif %}{% if request.path == category_list %} active {% endif %}{% if request.path == category_update %} active {% endif %}{% if request.path == category_create %} active {% endif %}">
-        <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Categories</span></a>
+        <a href="#" class="nav-link has-dropdown">
+        {% comment %} <i class="fas fa-fire"> {% endcomment %}
+        <i class="fas fa-arrow-right"></i>
+        </i><span>Categories</span>
+        </a>
         <ul class="dropdown-menu">
           <li class="{% if request.path == category_home %} active {% endif %}"><a class="nav-link" href="{% url 'adminHome' %}">Home</a></li>
           <li class="{% if request.path == category_list %} active {% endif %}{% if request.path == category_update %} active {% endif %}"><a class="nav-link" href="{% url 'category_list_view' %}">List All</a></li>
@@ -29,7 +33,11 @@
       {% url 'sub_category_create_view' as sub_category_create %}
       {% url 'sub_category_update_view' id as sub_category_update %}
       <li class="dropdown {% if request.path == sub_category_list %} active {% endif %}{% if request.path == category_update %} active {% endif %}{% if request.path == sub_category_create %} active {% endif %}">
-        <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Categories</span></a>
+        <a href="#" class="nav-link has-dropdown">
+        {% comment %} <i class="fas fa-fire"></i> {% endcomment %}
+        <i class="fas fa-arrow-right"></i>
+        <span>Sub Categories</span>
+        </a>
         <ul class="dropdown-menu">
           <li class="{% if request.path == sub_category_list %} active {% endif %}{% if request.path == category_update %} active {% endif %}"><a class="nav-link" href="{% url 'sub_category_list_view' %}">Sub Category List</a></li>
           <li class="{% if request.path == sub_category_create %} active {% endif %}"><a class="nav-link" href="{% url 'sub_category_create_view' %}">Create New Sub Category</a></li>
@@ -39,10 +47,28 @@
       {% url 'merchant_create_view' as merchant_create %}
       {% url 'merchant_list_view' as merchant_list %}
       <li class="dropdown {% if request.path == merchant_create %} active {% endif %}{% if request.path == merchant_list %} active {% endif %}">
-        <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Merchant User</span></a>
+        <a href="#" class="nav-link has-dropdown">
+        {% comment %} <i class="fas fa-fire"></i> {% endcomment %}
+        <i class="fas fa-arrow-right"></i>
+        <span>Merchant User</span>
+        </a>
         <ul class="dropdown-menu">
-          <li class="{% if request.path == merchant_create %} active {% endif %}"><a class="nav-link" href="{% url 'merchant_create_view' %}">Merchant Create</a></li>
           <li class="{% if request.path == merchant_list %} active {% endif %}"><a class="nav-link" href="{% url 'merchant_list_view' %}">Merchant List All</a></li>
+          <li class="{% if request.path == merchant_create %} active {% endif %}"><a class="nav-link" href="{% url 'merchant_create_view' %}">Merchant Create</a></li>
+        </ul>
+      </li>
+      <!-- Product Menu -->
+      {% url 'product_create_view' as product_create %}
+      {% url 'product_list_view' as product_list %}
+      <li class="dropdown {% if request.path == product_create %} active {% endif %}{% if request.path == product_list %} active {% endif %}">
+        <a href="#" class="nav-link has-dropdown">
+        {% comment %} <i class="fas fa-fire"></i> {% endcomment %}
+        <i class="fas fa-arrow-right"></i>
+        <span>Products</span>
+        </a>
+        <ul class="dropdown-menu">
+          <li class="{% if request.path == product_create %}active{% endif %}"><a class="nav-link" href="{% url 'product_create_view' %}">Product Create</a></li>
+          <li class="{% if request.path == product_list %}active{% endif %}"><a class="nav-link" href="{% url 'product_list_view' %}">Product List</a></li>
         </ul>
       </li>
     </ul>
