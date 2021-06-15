@@ -9,5 +9,5 @@ assets/
 **/__pycache__/
 **/migrations/0**.py
 dist/
-media/
+# media/
 env/

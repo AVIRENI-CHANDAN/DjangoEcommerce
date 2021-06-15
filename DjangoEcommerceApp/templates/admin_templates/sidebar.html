@@ -60,15 +60,16 @@
       <!-- Product Menu -->
       {% url 'product_create_view' as product_create %}
       {% url 'product_list_view' as product_list %}
-      <li class="dropdown {% if request.path == product_create %} active {% endif %}{% if request.path == product_list %} active {% endif %}">
+      {% url 'product_update_view' as product_update %}
+      <li class="dropdown {% if request.path == product_create %} active {% endif %}{% if request.path == product_list %} active {% endif %}{% if request.path == product_update %} active {% endif %}">
         <a href="#" class="nav-link has-dropdown">
         {% comment %} <i class="fas fa-fire"></i> {% endcomment %}
         <i class="fas fa-arrow-right"></i>
         <span>Products</span>
         </a>
         <ul class="dropdown-menu">
-          <li class="{% if request.path == product_create %}active{% endif %}"><a class="nav-link" href="{% url 'product_create_view' %}">Product Create</a></li>
           <li class="{% if request.path == product_list %}active{% endif %}"><a class="nav-link" href="{% url 'product_list_view' %}">Product List</a></li>
+          <li class="{% if request.path == product_create %}active{% endif %}"><a class="nav-link" href="{% url 'product_create_view' %}">Product Create</a></li>
         </ul>
       </li>
     </ul>
