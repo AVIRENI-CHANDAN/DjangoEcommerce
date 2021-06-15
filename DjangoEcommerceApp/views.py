@@ -6,6 +6,9 @@ from django.contrib import messages
 from django.urls import reverse
 
 # Create your views here.
+def index(req):
+    return HttpResponseRedirect(reverse('adminHome'))
+    
 def demoPage(req):
     return HttpResponse("Working Demo")
 

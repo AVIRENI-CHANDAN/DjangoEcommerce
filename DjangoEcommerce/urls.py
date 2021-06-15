@@ -25,6 +25,7 @@ urlpatterns = [
     path('demo/',appViews.demoPage,name="Demo Page"),
     path('demoPage/',appViews.demoPageTemplate,name="Demo Page template"),
     # Page for admin
+    path('',)
     path('admin/', appViews.adminLogin,name="Admin Login"),
     path('admin/home/',adminViews.admin_home,name="adminHome"),
     path('admin/login/',appViews.adminLoginProcess,name="admin-login-process"),
