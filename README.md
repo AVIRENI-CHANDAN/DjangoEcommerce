@@ -26,14 +26,14 @@ This is a Ecommerce web application made with Django framework. It provide editi
   <img src="https://user-images.githubusercontent.com/58340159/122059799-9f261500-ce0a-11eb-8134-e0d143c2a677.png" width="49%">
   <img src="https://user-images.githubusercontent.com/58340159/122059803-9f261500-ce0a-11eb-9e50-baad5ad39ba5.png" width="49%">
   <img src="https://user-images.githubusercontent.com/58340159/122059806-9fbeab80-ce0a-11eb-8b75-04dc23ef8d59.png" width="49%">
-  <img src="https://user-images.githubusercontent.com/58340159/122059807-a0574200-ce0a-11eb-8965-cfd708127837.png" width="49%">
+  <img src="https://user-images.githubusercontent.com/58340159/122059807-a0574200-ce0a-11eb-8965-cfd708127837.png" width="100%">
   
 </div>
   <hr>
 <div class="imagesSet2">
   <img src="https://user-images.githubusercontent.com/58340159/122059810-a0efd880-ce0a-11eb-9e9c-6370e3f45541.png" width="33%"><img src="https://user-images.githubusercontent.com/58340159/122059812-a1886f00-ce0a-11eb-869f-7e0034e9fb3f.png" width="33%"><img src="https://user-images.githubusercontent.com/58340159/122059816-a2210580-ce0a-11eb-9bb7-81841a58669f.png" width="33%">
   <img src="https://user-images.githubusercontent.com/58340159/122059823-a3eac900-ce0a-11eb-8e01-1c99d3ae0b41.png" width="33%"><img src="https://user-images.githubusercontent.com/58340159/122059830-a4835f80-ce0a-11eb-9073-72fcc145d9ad.png" width="33%"><img src="https://user-images.githubusercontent.com/58340159/122059833-a5b48c80-ce0a-11eb-9ceb-4b852c540e09.png" width="33%">
-  <img src="https://user-images.githubusercontent.com/58340159/122059836-a6e5b980-ce0a-11eb-9728-5dc0d491643f.png" width="300px">
+  <img src="https://user-images.githubusercontent.com/58340159/122059836-a6e5b980-ce0a-11eb-9728-5dc0d491643f.png" width="100%">
 </div>
   <hr>
 <div class="imagesSet3">
