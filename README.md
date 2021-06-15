@@ -4,8 +4,9 @@ This is a Ecommerce web application made with Django framework. It provide editi
 
 <hr>
 <h3>The Sample Images outputs are:</h3>
-<link rel="stylesheet" href="(Readme_Styles.css)">
-
+```markdown
+<link rel="stylesheet" href="https://github.com/AVIRENI-CHANDAN/DjangoEcommerce/blob/7c4dc3d24139225eaa05dd0d2d8ee843b9e414e5/Readme_Styles.css">
+```
 
 <div class="slideshow-container">
 <div class="mySlides fade">
