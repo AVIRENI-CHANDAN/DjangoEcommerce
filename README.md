@@ -4,7 +4,7 @@ This is a Ecommerce web application made with Django framework. It provide editi
 
 <hr>
 <h3>The Sample Images outputs are:</h3>
-<link rel="stylesheet" href="Readme_Styles.css">
+<link rel="stylesheet" href="(Readme_Styles.css)">
 
 
 <div class="slideshow-container">
