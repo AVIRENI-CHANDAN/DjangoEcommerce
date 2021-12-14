@@ -41,3 +41,9 @@ This is a Ecommerce web application made with Django framework. It provide editi
   <img src="https://user-images.githubusercontent.com/58340159/122059844-a816e680-ce0a-11eb-9fb6-80d8938b8b1d.png" width="49%">  <img src="https://user-images.githubusercontent.com/58340159/122059846-a8af7d00-ce0a-11eb-990c-44e3c39cbeec.png" width="49%">
   <img src="https://user-images.githubusercontent.com/58340159/122059849-a9481380-ce0a-11eb-9c80-9ab614b4a2aa.png" width="49%">  <img src="https://user-images.githubusercontent.com/58340159/122059850-a9e0aa00-ce0a-11eb-9296-fd79d8274ccf.png" width="49%">
 </div>
+
+## Team members
+[Avireni Chandan](https://github.com/AVIRENI-CHANDAN)
+[Devulapally Jyothika](https://github.com/Jyothika06)
+[Gorthi Bhoomika](https://github.com/Bhoomika-25)
+[Inugava Anurag Sai](https://github.com/Anurag-Sai-Inguva)
