@@ -44,6 +44,5 @@ This is a Ecommerce web application made with Django framework. It provide editi
 
 ## Team members
 [Avireni Chandan](https://github.com/AVIRENI-CHANDAN)<br>
-[Devulapally Jyothika](https://github.com/Jyothika06)<br>
 [Gorthi Bhoomika](https://github.com/Bhoomika-25)<br>
 [Inugava Anurag Sai](https://github.com/Anurag-Sai-Inguva)
